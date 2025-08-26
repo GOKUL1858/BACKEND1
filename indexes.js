@@ -95,8 +95,10 @@ app.put('/updateStudent',async(req,res)=>{
         if(updateStudent){
             res.send("Student Updated")
         }else{
-            res.status(404).send
+            res.status(404).send("Studennt not found")
         }
+    }catch(error){
+        res.status(500).send("Error updating student")
     }
 })
 app.listen(3000);
