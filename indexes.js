@@ -84,4 +84,19 @@ app.get('/getStudentByQuery/:rollNo', async (req, res) => {
         res.status(500).send("Error in deleting student")
     }
 })
+app.put('/updateStudent',async(req,res)=>{
+    const{rollNo,name,age,department}=req.body
+    try{
+        const updateStudent=await Student.findOneAndUpdate(
+            {rollNo},
+            {name,age,department},
+            {new:true}
+        )
+        if(updateStudent){
+            res.send("Student Updated")
+        }else{
+            res.status(404).send
+        }
+    }
+})
 app.listen(3000);
